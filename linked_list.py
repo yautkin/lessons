@@ -107,3 +107,39 @@ class LinkedList:
                         node.next = newNode
 
                 node = node.next
+    def insert(self, afterNode: Node, newNode: Node):
+        node = self.head
+
+        if self.head is None or afterNode is None:
+            self.add_in_head(newNode)
+        else:
+            while node is not None:
+                if node == afterNode:
+                    node_next = node.next
+                    if node == self.tail:
+                        self.add_in_tail(newNode)
+                    else:
+                        if node_next:
+                            newNode.next = node_next
+                        else:
+                            newNode.next = None
+                            self.tail =newNode
+                        node.next = newNode
+
+                node = node.next
+
+    @classmethod
+    def sum_two_lists(cls, linked_list_1, linked_list_2):
+        result_list = cls()
+
+        if linked_list_1.len() == linked_list_2.len():
+            node_1 = linked_list_1.head
+            node_2 = linked_list_2.head
+
+            while node_1 is not None and node_2 is not None:
+                result_list.add_in_tail(Node(node_1.value + node_2.value))
+                node_1 = node_1.next
+                node_2 = node_2.next
+
+        return result_list
+
